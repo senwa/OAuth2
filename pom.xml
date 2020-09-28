@@ -17,17 +17,13 @@
 
     <modules>
         <module>zuul</module>
-        <module>commons</module>
+       <!-- <module>commons</module>-->
         <module>eureka-client</module>
         <module>oauth-server</module>
-<<<<<<< HEAD
         <module>eureka-client1</module>
-
 <!--        <module>eureka-server-single</module>-->
 <!--        <module>config-server</module>-->
 <!--        <module>config-client-template</module>-->
-=======
->>>>>>> oauth
     </modules>
 
     <!--    统一版本管理-->

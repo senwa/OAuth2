@@ -49,11 +49,11 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
+       <!-- <dependency>
             <groupId>zcs</groupId>
             <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
 
     </dependencies>
