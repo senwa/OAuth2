@@ -1,11 +1,16 @@
 server:
   port: 9120
+  servlet:
+    context-path: /oauth-server
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/seckill?serverTimezone=UTC&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
     username: oauth
     password: 123456
+logging:
+  level:
+    root: DEBUG
 #spring:
 #  security:
 #    user:

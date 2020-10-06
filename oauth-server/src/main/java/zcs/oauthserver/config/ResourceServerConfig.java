@@ -15,14 +15,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-//                antMatcher表示只能处理/user的请求
-                .antMatcher("/user/**")
+//                antMatcher表示只能处理/oauth2_token的请求
+                .antMatcher("/oauth2_token/**")
                 .authorizeRequests()
-                .antMatchers("/user/test1").permitAll()
-                .antMatchers("/user/test2").authenticated()
-//                .antMatchers("user/test2").hasRole("USER")
-//                .anyRequest().authenticated()
+                .anyRequest().authenticated()
         ;
-        System.out.println("resour");
     }
 }

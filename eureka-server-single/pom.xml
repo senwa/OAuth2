@@ -17,7 +17,6 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
-        <docker.image.prefix>zcs</docker.image.prefix>
     </properties>
     <dependencies>
         <dependency>
@@ -50,26 +49,15 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <configuration>
-<!--                    镜像名称-->
-                    <imageName>${docker.image.prefix}-${project.artifactId}</imageName>
-<!--                    Dockerfile所在的文件夹-->
-                    <dockerDirectory></dockerDirectory>
-                    <resources>
-                        <resourec>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resourec>
-                    </resources>
-                </configuration>
-            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>

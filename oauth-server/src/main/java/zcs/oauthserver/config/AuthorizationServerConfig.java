@@ -16,11 +16,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 import zcs.oauthserver.service.UserServiceDetail;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
+    private static final Log logger = LogFactory.getLog(AuthorizationServerConfig.class);
     @Autowired
     private UserServiceDetail userServiceDetail;
 
@@ -39,11 +40,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
-                .withClient("zcs")
-                .secret(new BCryptPasswordEncoder().encode("zcs"))
+                .withClient("zuul")
+                .secret(new BCryptPasswordEncoder().encode("secrect"))
                 .scopes("app")
                 .authorizedGrantTypes("authorization_code", "password")
-                .redirectUris("www.baidu.com");
+                .redirectUris("http://localhost:9110/login");
 //        clients.withClientDetails(new JdbcClientDetailsService(dataSource));
     }
 
@@ -71,6 +72,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         // 导入证书
         KeyStoreKeyFactory keyStoreKeyFactory =
                 new KeyStoreKeyFactory(new ClassPathResource("oauth2.jks"), "mypass".toCharArray());
+        logger.error(keyStoreKeyFactory.getKeyPair("oauth2").getPublic());
         converter.setKeyPair(keyStoreKeyFactory.getKeyPair("oauth2"));
         return converter;
     }

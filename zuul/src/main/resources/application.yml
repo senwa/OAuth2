@@ -20,7 +20,7 @@ zuul:
     oauth-server:
       path: /oauth-server/**
       sensitiveHeaders:
-        serviceId: eureka-client
+        serviceId: oauth-server
     #  忽略路由
 #  ignored-patterns:  /**/v2/api-docs
 swagger:
@@ -28,7 +28,10 @@ swagger:
   description: 秒杀/12306
   version: 1.0
 #  terms-of-service-url: ''
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 #认证服务器地址
 oauth-server: http://localhost:9120/oauth-server
 security:
@@ -36,7 +39,7 @@ security:
     #   和认证服务器中的client设置对应
     client:
       client-id: zuul
-      client-secret: secret
+      client-secret: secrect
 #	   获取令牌地址
       access-token-uri: ${oauth-server}/oauth/token
 #      认证地址
@@ -49,7 +52,13 @@ security:
 #      二、访问授权服务器获取公钥 解析令牌
       jwt:
         key-uri: ${oauth-server}/oauth/token_key
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+        key-value: |
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAq3zZKTeL5/mufwJ9NFoP
+          WeOGnXNsskD7ab86mJU966+eolyucyzly1a1h7FExQkKKbObw3cxq4V0ajOoCFir
+          tFvrzptoiTXwttw3s5kfVTvNBSWG8ADIvRgtruM+IiU3WFM0s/IFjBroCdcgs8V0
+          sVWePS/nMi0c+ye1GJmC7jlexittEvN4nog7Pg/UFReXR0ZxCoBu5Ewd8KkMpuCQ
+          vk5i16YZ+PdkJ7wndJJSLMvtP5tQkkBXJ8QDiU/CAsbEn698sTuYS5oY/lHuZs2z
+          Af+/Zmud+L+LrFnC4AzYIT/ZXcaizjxSC9oVTsa9D2aQMGQsXN3I3Kz16IeonYUn
+          XQIDAQAB
+          -----END PUBLIC KEY-----

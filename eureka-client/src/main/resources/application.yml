@@ -27,7 +27,7 @@ swagger:
   title: eureka-client接口文档
 #mybatis-plus:
 #  mapper-locations: classpath*:mapper/*.xml
-#oauth-server: http://localhost:9120/oauth-server
+oauth-server: http://localhost:9120/oauth-server
 security:
   oauth2:
     resource:
